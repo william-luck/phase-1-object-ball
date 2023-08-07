@@ -209,9 +209,20 @@ function winningTeam() {
     const awayPoints= Object.values(gameObject().away.players).reduce((acc, cur) => acc + cur.points, 0)
 
     return homePoints > awayPoints ? gameObject().home.teamName : gameObject().away.teamName
-
-
 }
+
+function playerWithLongestName() {
+    return allPlayers().sort((a, b) => Object.keys(b)[0].length - Object.keys(a)[0].length)[0]
+}
+
+function doesLongNameStealATon() {
+    longestNamePlayerSteals = Object.values(playerWithLongestName())[0].steals;
+    
+    return allPlayers().every(player => Object.values(player)[0].steals <= longestNamePlayerSteals)
+}
+
+
+
 
 
 
